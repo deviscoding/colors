@@ -1,0 +1,82 @@
+
+// region //////////////////////////////////////////////// Getters
+
+@function get-color-if($map, $color) {
+  @if map-has_key($map,$color) {
+    @return map-get($map,$color);
+  } @else {
+    @return red;
+  }
+}
+
+@function color($color) {
+  @return get-color-if($colors,$color);
+}
+
+@function theme-color($color) {
+  @return get-color-if($theme-colors, $color);
+}
+
+@function gray($value) {
+  @return get-color-if($grays,$value);
+}
+
+// endregion ///////////////////////////////////////////// End Getters
+
+// region //////////////////////////////////////////////// Setters
+
+@function color-map-merge($existing,$new: ()) {
+  @return map-merge($existing,$new);
+}
+
+@function set-color($map,$name,$color) {
+  @if map-has-key($map,$name) {
+    $map: map-remove($map,$name);
+  }
+
+  @return color-map-merge($map,($name: $color));
+}
+
+@function set-theme-color($name,$color) {
+  @return set-color($theme-colors, $name,$color);
+}
+
+@function set-color($name,$color) {
+  @return set-color($colors,$name,$color);
+}
+
+@function set-gray($value,$color) {
+  @return set-gray($grays,$value,$color);
+}
+
+@function theme-colors-merge($new: ()) {
+  $theme-colors: () !default;
+
+  @return color-map-merge($theme-colors, $new);
+}
+
+@function colors-merge($new: ()) {
+  $colors: () !default;
+
+  @return color-map-merge($colors, $new);
+}
+
+@function grays-merge($new: ()) {
+  $grays: () !default;
+
+  @return color-map-merge($grays, $new);
+}
+
+// endregion ///////////////////////////////////////////// End Setters
+
+// region //////////////////////////////////////////////   Other Color Functions
+
+@function isLight($color) {
+  @if (lightness($color) > 50) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+// endregion ///////////////////////////////////////////   End Other Color Functions
