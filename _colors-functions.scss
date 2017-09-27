@@ -29,7 +29,7 @@
   @return map-merge($existing,$new);
 }
 
-@function set-color($map,$name,$color) {
+@function set-map-color($map,$name,$color) {
   @if map-has-key($map,$name) {
     $map: map-remove($map,$name);
   }
@@ -38,15 +38,15 @@
 }
 
 @function set-theme-color($name,$color) {
-  @return set-color($theme-colors, $name,$color);
+  @return set-map-color($theme-colors, $name,$color);
 }
 
 @function set-color($name,$color) {
-  @return set-color($colors,$name,$color);
+  @return set-map-color($colors,$name,$color);
 }
 
 @function set-gray($value,$color) {
-  @return set-gray($grays,$value,$color);
+  @return set-map-color($grays,$value,$color);
 }
 
 @function theme-colors-merge($new: ()) {
