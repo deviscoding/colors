@@ -1,52 +1,32 @@
 
 // region //////////////////////////////////////////////// Getters
 
-@function get-color-if($map, $color) {
+@function _get-color-if($map, $color) {
   @if map-has_key($map,$color) {
     @return map-get($map,$color);
   } @else {
-    @return red;
+    @error "The color #{$color} is not available.";
   }
 }
 
 @function color($color) {
-  @return get-color-if($colors,$color);
+  @return _get-color-if($colors,$color);
 }
 
 @function theme-color($color) {
-  @return get-color-if($theme-colors, $color);
+  @return _get-color-if($theme-colors, $color);
 }
 
 @function gray($value) {
-  @return get-color-if($grays,$value);
+  @return _get-color-if($grays,$value);
 }
 
 // endregion ///////////////////////////////////////////// End Getters
 
-// region //////////////////////////////////////////////// Setters
+// region //////////////////////////////////////////////// Mergers
 
 @function color-map-merge($existing,$new: ()) {
   @return map-merge($existing,$new);
-}
-
-@function set-map-color($map,$name,$color) {
-  @if map-has-key($map,$name) {
-    $map: map-remove($map,$name);
-  }
-
-  @return color-map-merge($map,($name: $color));
-}
-
-@function set-theme-color($name,$color) {
-  @return set-map-color($theme-colors, $name,$color);
-}
-
-@function set-color($name,$color) {
-  @return set-map-color($colors,$name,$color);
-}
-
-@function set-gray($value,$color) {
-  @return set-map-color($grays,$value,$color);
 }
 
 @function theme-colors-merge($new: ()) {
@@ -65,6 +45,42 @@
   $grays: () !default;
 
   @return color-map-merge($grays, $new);
+}
+
+// endregion ///////////////////////////////////////////// End Mergers
+
+// region //////////////////////////////////////////////// Setters
+
+@function _set-map-color($map,$name,$color) {
+  @if map-has-key($map,$name) {
+    $map: map-remove($map,$name);
+  }
+
+  @return color-map-merge($map,($name: $color));
+}
+
+@mixin set-theme-color($name,$color) {
+  @if variable-exists(theme-colors) {
+    $theme-colors: _set-map-color($theme-colors, $name,$color);
+  } @else {
+    @error "You may not use the `set-theme-color` mixin before setting the $theme-colors map.  For best results, `@include 'colors'` to avoid order of operations issues.";
+  }
+}
+
+@mixin set-color($name,$color) {
+  @if variable-exists(colors) {
+    $colors: _set-map-color($colors,$name,$color);
+  } @else {
+    @error "You may not use the `set-color` mixin before setting the $colors map.  For best results, `@include 'colors'` to avoid order of operations issues.";
+  }
+}
+
+@mixin set-gray($value,$color) {
+  @if variable-exists(grays) {
+    $grays: _set-map-color($grays,$value,$color);
+  } @else {
+    @error "You may not use the `set-gray` mixin before setting the $grays map.  For best results, `@include 'colors'` to avoid order of operations issues.";
+  }
 }
 
 // endregion ///////////////////////////////////////////// End Setters
