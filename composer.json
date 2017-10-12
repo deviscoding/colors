@@ -1,0 +1,20 @@
+{
+  "name": "strapless/colors",
+  "description": "SASS color functions, maps and CSS used in StrapLess components.  Can also be used quite effectively in any SASS where one desires an easy way to manage colors.",
+  "keywords": [
+      "color",
+      "map",
+      "sass",
+      "scss",
+      "strapless"
+  ],
+  "homepage": "https://www.github.com/strapless/colors",
+  "version": "1.0",
+  "authors": [
+      {
+          "name": "Aaron M Jones",
+          "homepage": "http://www.jonesiscoding.com"
+      }
+  ],
+  "license": "MIT"
+}
