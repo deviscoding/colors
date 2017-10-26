@@ -1,11 +1,14 @@
 
 // region //////////////////////////////////////////////// Getters
 
-@function _get-color-if($map, $color) {
-  @if map-has_key($map,$color) {
-    @return map-get($map,$color);
+@function _get-color-if($map, $color-name) {
+  // Force Quotes to Match Map
+  $color-name: quote($color-name);
+  // Get Key if Map Has Key
+  @if map-has_key($map,$color-name) {
+    @return map-get($map,$color-name);
   } @else {
-    @error "The color #{$color} is not available.";
+    @error "The color `#{$color-name}` is not available.";
   }
 }
 
@@ -52,6 +55,9 @@
 // region //////////////////////////////////////////////// Setters
 
 @function _set-map-color($map,$name,$color) {
+  // Force Quotes to Match Map
+  $name: quote($name);
+  // Remove Existing Key
   @if map-has-key($map,$name) {
     $map: map-remove($map,$name);
   }
