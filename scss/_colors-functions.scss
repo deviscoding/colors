@@ -1,14 +1,40 @@
 
 // region //////////////////////////////////////////////// Getters
 
+@function _identify-color-map($map) {
+  @if $map == $theme-colors {
+    @return "theme-color";
+  } @else if $map == $colors {
+    @return "color";
+  } @else if $map == $grays {
+    @return "gray";
+  }
+
+  @return null;
+}
+
 @function _get-color-if($map, $color-name) {
+  // Check to make sure a color value wasn't provided.
+  @if type-of($color-name) == color {
+    $type: _identify-color-map($map);
+    @if $type != null {
+      @warn "The color name provided to `#{$type}()` was a color, not a string!";
+    } @else {
+      @warn "The color name provided to this function was a color, not a string!";
+    }
+
+    @return $color-name;
+  }
+
   // Force Quotes to Match Map
   $color-name: quote($color-name);
+
   // Get Key if Map Has Key
   @if map-has_key($map,$color-name) {
     @return map-get($map,$color-name);
   } @else {
-    @error "The color `#{$color-name}` is not available.";
+    $type: _identify-color-map($map);
+    @error "The color `#{$color-name}` is not available in the `$#{$type}s` map.";
   }
 }
 
