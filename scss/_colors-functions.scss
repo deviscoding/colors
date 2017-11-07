@@ -93,7 +93,7 @@
 
 @mixin set-theme-color($name,$color) {
   @if variable-exists(theme-colors) {
-    $theme-colors: _set-map-color($theme-colors, $name,$color);
+    $theme-colors: _set-map-color($theme-colors, $name,$color) !global;
   } @else {
     @error "You may not use the `set-theme-color` mixin before setting the $theme-colors map.  For best results, `@include 'colors'` to avoid order of operations issues.";
   }
@@ -101,7 +101,7 @@
 
 @mixin set-color($name,$color) {
   @if variable-exists(colors) {
-    $colors: _set-map-color($colors,$name,$color);
+    $colors: _set-map-color($colors,$name,$color) !global;
   } @else {
     @error "You may not use the `set-color` mixin before setting the $colors map.  For best results, `@include 'colors'` to avoid order of operations issues.";
   }
@@ -109,7 +109,7 @@
 
 @mixin set-gray($value,$color) {
   @if variable-exists(grays) {
-    $grays: _set-map-color($grays,$value,$color);
+    $grays: _set-map-color($grays,$value,$color) !global;
   } @else {
     @error "You may not use the `set-gray` mixin before setting the $grays map.  For best results, `@include 'colors'` to avoid order of operations issues.";
   }
