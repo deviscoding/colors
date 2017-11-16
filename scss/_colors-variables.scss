@@ -44,7 +44,7 @@ $colors: colors-merge((
         "gray-dark":    $gray-800,
         "gray-light":   $gray-700,
         "gray-lighter": $gray-300
-));
+)) !default;
 
 $grays: grays-merge((
         "50": $gray-50,
@@ -57,7 +57,7 @@ $grays: grays-merge((
         "700": $gray-700,
         "800": $gray-800,
         "900": $gray-900
-));
+)) !default;
 
 
 $theme-colors: theme-colors-merge((
@@ -67,6 +67,6 @@ $theme-colors: theme-colors-merge((
         "info":       $cyan,
         "warning":    $yellow,
         "danger":     $red,
-));
+)) !default;
 
 // endregion ////////////////////////////////////////////////////////////   End Color Map

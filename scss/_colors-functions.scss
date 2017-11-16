@@ -59,19 +59,25 @@
 }
 
 @function theme-colors-merge($new: ()) {
-  $theme-colors: () !default;
+  @if not(variable-exists(theme-colors)) {
+    $theme-colors: () !global;
+  }
 
   @return color-map-merge($theme-colors, $new);
 }
 
 @function colors-merge($new: ()) {
-  $colors: () !default;
+  @if not(variable-exists(colors)) {
+    $colors: () !global;
+  }
 
   @return color-map-merge($colors, $new);
 }
 
 @function grays-merge($new: ()) {
-  $grays: () !default;
+  @if not(variable-exists(grays)) {
+    $grays: () !global;
+  }
 
   @return color-map-merge($grays, $new);
 }
@@ -120,7 +126,9 @@
 // region //////////////////////////////////////////////   Other Color Functions
 
 @function isLight($color) {
-  @if (lightness($color) > 50) {
+  @if quote($color) == "transparent" {
+    @return true;
+  } @else if (lightness($color) > 50) {
     @return true;
   } @else {
     @return false;
