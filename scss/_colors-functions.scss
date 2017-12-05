@@ -135,4 +135,19 @@
   }
 }
 
+@function component-background($color-name: "primary") {
+  $color-base: #fff;
+  @return mix($color-base, theme-color($color-name), 10 * 8%);
+}
+
+@function component-border($color-name: "primary") {
+  $color-base: #fff;
+  @return mix($color-base, theme-color($color-name), 10 * 8%);
+}
+
+@function component-color($color-name: "primary") {
+  $color-base: #000;
+  @return mix($color-base, theme-color($color-name), 5 * 8%);
+}
+
 // endregion ///////////////////////////////////////////   End Other Color Functions
