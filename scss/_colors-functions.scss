@@ -125,13 +125,16 @@
 
 // region //////////////////////////////////////////////   Other Color Functions
 
-@function isLight($color) {
+@function isLight($color, $threshold: 150) {
   @if quote($color) == "transparent" {
     @return true;
-  } @else if (lightness($color) > 50) {
-    @return true;
   } @else {
-    @return false;
+    $red: red($color);
+    $green: green($color);
+    $blue: blue($color);
+    $yiq: (($red*299)+($green*587)+($blue*114))/1000;
+
+    @return if($yiq >= $threshold, true, false);
   }
 }
 
