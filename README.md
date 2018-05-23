@@ -1,5 +1,7 @@
-# StrapLess Colors
-SASS color functions and maps used in StrapLess components.  Can also be used quite effectively in any SASS where one desires an easy way to manage colors.
+# DevIsCoding Colors
+SASS color functions and maps used in DevIsCoding components.  Can also be used quite effectively in any SASS where one desires an easy way to manage colors.
+
+Formerly known as StrapLess Colors.
 
 ### Available Color Maps
 

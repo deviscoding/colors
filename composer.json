@@ -1,6 +1,6 @@
 {
-  "name": "strapless/colors",
-  "description": "SASS color functions, maps and CSS used in StrapLess components.  Can also be used quite effectively in any SASS where one desires an easy way to manage colors.",
+  "name": "deviscoding/colors",
+  "description": "SASS color functions, maps and CSS used in DevIsCoding components.  Can also be used quite effectively in any SASS where one desires an easy way to manage colors.",
   "keywords": [
       "color",
       "map",
@@ -8,7 +8,7 @@
       "scss",
       "strapless"
   ],
-  "homepage": "https://www.github.com/strapless/colors",
+  "homepage": "https://www.github.com/deviscoding/colors",
   "version": "1.0.7",
   "authors": [
       {
