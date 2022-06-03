@@ -30,7 +30,7 @@
   $color-name: quote($color-name);
 
   // Get Key if Map Has Key
-  @if map-has_key($map,$color-name) {
+  @if map-has-key($map,$color-name) {
     @return map-get($map,$color-name);
   } @else {
     $type: _identify-color-map($map);
