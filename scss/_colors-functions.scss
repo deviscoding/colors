@@ -26,6 +26,10 @@
     @return $color-name;
   }
 
+  @if type-of($color-name) == number {
+    $color-name: inspect($color-name);
+  }
+
   // Force Quotes to Match Map
   $color-name: quote($color-name);
 
@@ -126,7 +130,12 @@
 // region //////////////////////////////////////////////   Other Color Functions
 
 @function isLight($color, $threshold: 150) {
-  @if quote($color) == "transparent" {
+  @if type-of($color) == "string" {
+    @if quote($color) == "transparent" {
+      @return true;
+    }
+  }
+  @if $color == "transparent" {
     @return true;
   } @else {
     $red: red($color);
