@@ -9,7 +9,7 @@
       "strapless"
   ],
   "homepage": "https://www.github.com/deviscoding/colors",
-  "version": "1.0.11",
+  "version": "1.1",
   "replace": {
     "strapless/colors": "^1.0"
   },
